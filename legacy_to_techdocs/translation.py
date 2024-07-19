@@ -8,7 +8,11 @@ from openapi3 import OpenAPI
 from openapi3.object_base import ObjectBase
 
 from legacy_to_techdocs.openapi import CondensedOpenAPI, CondensedOperation
-from legacy_to_techdocs.shared import CONSOLE_STDERR, PICKLE_PATH, LegacyURLComponents
+from legacy_to_techdocs.shared import (
+    CONSOLE_STDERR,
+    PICKLE_PATH,
+    LegacyURLComponents,
+)
 
 URL_PATH_REGEX = re.compile(r"[^a-zA-z0-9- ]")
 
@@ -142,7 +146,9 @@ class URLTranslator:
 
         return result
 
-    def _translate_from_components(self, components: LegacyURLComponents) -> str:
+    def _translate_from_components(
+        self, components: LegacyURLComponents
+    ) -> str:
         """
         Gets a TechDocs url given a legacy API docs URL's components.
 
@@ -165,7 +171,9 @@ class URLTranslator:
         else:
             legacy_op = self._legacy_op_map.get(op_key)
             if legacy_op is None:
-                raise TranslationError(f"Pair {op_key} not found in legacy spec")
+                raise TranslationError(
+                    f"Pair {op_key} not found in legacy spec"
+                )
 
         try:
             new_op = self.get_equivalent_operation(legacy_op)

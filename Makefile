@@ -1,15 +1,16 @@
 PYTHON ?= python3
+PIP ?= pip3
 
 .PHONY: format
 format: isort black
 
 .PHONY: isort
 isort:
-	isort .
+	$(PYTHON) -m isort ./legacy_to_techdocs
 
 .PHONY: black
 black:
-	black .
+	$(PYTHON) -m black ./legacy_to_techdocs
 
 .PHONY: bake
 bake: build
@@ -17,11 +18,11 @@ bake: build
 
 .PHONY: build
 build:
-	python3 -m build --wheel --sdist
+	$(PYTHON) -m build --wheel --sdist
 
 .PHONY: install
 install:
-	pip install --upgrade -e .[dev]
+	$(PIP) install --upgrade -e .[dev]
 
 .PHONY: clean
 clean:

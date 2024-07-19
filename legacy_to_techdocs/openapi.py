@@ -57,7 +57,9 @@ class CondensedOpenAPI:
         :return: CondensedOpenAPI
         """
 
-        root_docs_url = spec.externalDocs.url if spec.externalDocs is not None else None
+        root_docs_url = (
+            spec.externalDocs.url if spec.externalDocs is not None else None
+        )
 
         paths = defaultdict()
         for path in spec.paths.values():
