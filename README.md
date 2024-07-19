@@ -36,7 +36,7 @@ subcommand:
 #### From Git
 
 ```bash
-pip install --upgrade git@github.com:lgarber-akamai/linode-legacy-to-techdocs.git
+pip install --upgrade git+https://github.com/lgarber-akamai/linode-legacy-to-techdocs.git
 ```
 
 #### From Local Project
