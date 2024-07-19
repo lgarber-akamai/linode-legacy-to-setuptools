@@ -171,11 +171,11 @@ class URLTranslator:
             new_op = self.get_equivalent_operation(legacy_op)
         except ValueError as err:
             raise TranslationError(
-                f"Could not get equivalent operation for {op_key}command"
+                f"Could not get equivalent operation for {op_key}"
             ) from err
 
         if new_op.external_docs_url is None:
-            raise TranslationError(f"No external docs defined for {new_op}command")
+            raise TranslationError(f"No external docs defined for {new_op}")
 
         return new_op.external_docs_url
 
