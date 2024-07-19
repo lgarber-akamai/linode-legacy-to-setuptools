@@ -167,8 +167,8 @@ class ReplaceCommand(Command):
 
             for translation in translations:
                 # Strip scheme & host to prevent truncation in output
-                before = urlparse(translation.before).path
-                after = urlparse(translation.after).path
+                before = self._format_url_for_output(translation.before)
+                after = self._format_url_for_output(translation.after)
 
                 results.append(
                     (
@@ -199,6 +199,23 @@ class ReplaceCommand(Command):
             result_table.add_row(*result)
 
         CONSOLE_STDERR.print(result_table)
+
+    @staticmethod
+    def _format_url_for_output(url: str) -> str:
+        """
+        Formats the given URL for the replacement output table.
+
+        :param url: The URL to format.
+
+        :returns: The formatted URL.
+        """
+        parsed = urlparse(url)
+        result = parsed.path
+
+        if parsed.fragment != "":
+            result += f"#{parsed.fragment}"
+
+        return result
 
 
 COMMANDS = [BakeCommand, ConvertCommand, ReplaceCommand]
