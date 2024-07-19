@@ -190,8 +190,10 @@ class ReplaceCommand(Command):
             show_header=False,
             box=None,
         )
-        for _ in range(4):
-            result_table.add_column()
+        result_table.add_column(justify="right")
+        result_table.add_column(justify="right")
+        result_table.add_column(justify="center")
+        result_table.add_column(justify="left")
 
         for result in sorted(results, key=lambda r: r[0]):
             result_table.add_row(*result)
